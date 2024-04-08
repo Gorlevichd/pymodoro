@@ -1,3 +1,6 @@
+import argparse
+from pymodoro import pomodoro_segment
+
 # Parse CLI inputs
 parser = argparse.ArgumentParser()
 parser.add_argument("--n_cycles", nargs = "?", default = 1, type = int,

@@ -1,5 +1,5 @@
 import argparse
-from pymodoro import pomodoro_segment
+from pomodoro import pomodoro_segment
 
 # Parse CLI inputs
 parser = argparse.ArgumentParser()

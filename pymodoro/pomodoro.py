@@ -8,7 +8,14 @@ import subprocess
 
 def pomodoro_segment(name: str, minutes: int):
     print(colorama.Fore.GREEN + f"Time to start {name}")
-    subprocess.Popen(["notify-send", "Pomodoro", f"Time to start {name}"])
+    
+    # Notifications do not work on windows, 
+    # I simply try-excepted them, because I did not have time to think for a good solution
+    try:
+        subprocess.Popen(["notify-send", "Pomodoro", f"Time to start {name}"])
+    except:
+        pass
+
     input(colorama.Fore.GREEN + "Press Enter, when ready:" + colorama.Style.RESET_ALL)
 
     start = time.time()
@@ -33,7 +40,6 @@ def pomodoro_segment(name: str, minutes: int):
 def run_loop(config):
     # Run pomodoro loop
     print("pomodoro".center(config.terminal_columns, "_"))
-    print("".center(config.terminal_columns, "-"))
     print(f"There is {config.n_focus} {config.focus_time}-minute focus segments...".center(config.terminal_columns, " "))
     print(f"And {config.n_focus - 1} {config.small_break_time}-minute small breaks...".center(config.terminal_columns, " "))
     print(f"Cycle finishes with {config.long_break_time}-minute long break".center(config.terminal_columns, " "))

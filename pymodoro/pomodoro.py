@@ -18,7 +18,7 @@ def pomodoro_segment(name: str, minutes: int):
 
     elapsed = 0
     with tqdm(total = minutes * 60, 
-              bar_format="{desc}: {elapsed}|{bar}|:{percentage:3.0f}%",
+              bar_format="{desc}: {elapsed} |{bar}| :{percentage:3.0f}%",
               desc=f"{name}", 
               ascii=" #") as pbar:
         while (elapsed < minutes * 60):

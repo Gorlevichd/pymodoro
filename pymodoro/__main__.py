@@ -1,6 +1,10 @@
 import argparse
 from .pomodoro import pomodoro_segment
 import os
+import colorama
+
+# For colored output
+colorama.init()
 
 # Parse CLI inputs
 parser = argparse.ArgumentParser()

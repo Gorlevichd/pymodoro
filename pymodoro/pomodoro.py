@@ -2,11 +2,12 @@ from tqdm import tqdm
 import time
 from datetime import datetime, timedelta
 import argparse
+import colorama
 
 
 def pomodoro_segment(name: str, minutes: int):
-    print(f"Time to start {name}")
-    input("Press Enter, when ready:")
+    print(colorama.Fore.GREEN + f"Time to start {name}")
+    input(colorama.Fore.GREEN + "Press Enter, when ready:" + colorama.Style.RESET_ALL)
 
     start = time.time()
     start_dt = datetime.strptime(time.ctime(start), "%a %b %d %H:%M:%S %Y")

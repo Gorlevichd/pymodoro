@@ -1,5 +1,6 @@
 import argparse
-from pomodoro import pomodoro_segment
+from .pomodoro import pomodoro_segment
+import os
 
 # Parse CLI inputs
 parser = argparse.ArgumentParser()
@@ -14,18 +15,22 @@ parser.add_argument("--n_focus", nargs = "?", default = 4, type = int,
 parser.add_argument("--long_break", nargs = "?", default = 15, type = int,
                     help = "Pomodoro long break time in minutes")
 args = parser.parse_args()
-    
-print("Pomodoro".center(50, "_"))
-print("".center(50, "-"))
-print(f"Starting pomodoro with {args.n_cycles} cycles")
-print(f"There is {args.n_focus} {args.focus}-minute focus segments...")
-print(f"And {args.n_focus - 1} {args.small_break}-minute small breaks...")
-print(f"Cycle finishes with {args.long_break}-minute long break")
-print("".center(50, "-"))
+
+# Determine terminal size for print alignment
+terminal_columns = os.get_terminal_size().columns
+
+# Run pomodoro loop
+print("Pomodoro".center(terminal_columns, "_"))
+print("".center(terminal_columns, "-"))
+print(f"Starting pomodoro with {args.n_cycles} cycles".center(terminal_columns, " "))
+print(f"There is {args.n_focus} {args.focus}-minute focus segments...".center(terminal_columns, " "))
+print(f"And {args.n_focus - 1} {args.small_break}-minute small breaks...".center(terminal_columns, " "))
+print(f"Cycle finishes with {args.long_break}-minute long break".center(terminal_columns, " "))
+print("".center(terminal_columns, "-"))
 
 for cycle_i in range(args.n_cycles):
-    print(f"Starting cycle {cycle_i}")
-    print("".center(50, "-"))
+    print(f"Starting cycle {cycle_i}".center(terminal_columns, " "))
+    print("".center(terminal_columns, "-"))
 
     for focus_segment in range(args.n_focus):
         pomodoro_segment("Focus", args.focus)
